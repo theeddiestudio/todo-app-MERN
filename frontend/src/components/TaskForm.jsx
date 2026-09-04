@@ -1,7 +1,7 @@
 import { Plus, X } from 'lucide-react'
 import React from 'react'
 
-function TaskForm() {
+function TaskForm({ newTask, setNewTask, onAdd, onCancel }) {
   return (
     <div className='bg-gray-900 border-gray-700 rounded-2xl shadow-2xl p-8'>
         {/* Header with Close */}
@@ -9,22 +9,24 @@ function TaskForm() {
             <h2 className='text-2xl font-bold text-white'>Add New Task</h2>
 
             {/* Conditional Rendering */}
-            <button className='text-gray-400 hover:text-red-500 transition'>
-                <X size={26} />
-            </button>
+            {onCancel && (
+                <button className='text-gray-400 hover:text-red-500 transition' onClick={ onCancel }>
+                    <X size={26} />
+                </button>
+            )}
         </div>
 
         {/* Inputs */}
         <div className='space-y-4'>
-            <input type='text' placeholder='Task Title' className='w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500' />
-            <textarea type='text' placeholder='Description (Optional)' className='w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-emerald-500' rows='4' />
+            <input type='text' placeholder='Task Title' value={newTask.title} onChange={(e) => setNewTask({...newTask, title: e.target.value})} className='w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500' />
+            <textarea type='text' placeholder='Description (Optional)' value={newTask.description} onChange={(e) => setNewTask({...newTask, description: e.target.value})} className='w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-emerald-500' rows='4' />
             <div className='flex gap-3'>
-                <button className='flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-4 rounded-lg flex items-center justify-center gap-2 hover:from-green-500 hover:to-emerald-500 transition'>
+                <button className='flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-4 rounded-lg flex items-center justify-center gap-2 hover:from-green-500 hover:to-emerald-500 transition' onClick={onAdd}>
                     <Plus size={20} /> Add Task
                 </button>
 
                 {/* Conditional Rendering */}
-                <button className='flex-1 bg-gray-700 text-gray-300 py-3 rounded-lg hover:bg-gray-600 transition'>
+                <button className='flex-1 bg-gray-700 text-gray-300 py-3 rounded-lg hover:bg-gray-600 transition' onClick={onCancel}>
                     Cancel
                 </button>
             </div>

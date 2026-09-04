@@ -44,7 +44,7 @@ exports.updateTodo = async (req,res) => {
         task.title = req.body.title || task.title;
         task.description = req.body.description !== undefined ? req.body.description : task.description;
         task.isCompleted = req.body.isCompleted !== undefined ? req.body.isCompleted : task.isCompleted;
-        task.updatedAt = Date.now();
+        task.updatedAt = new Date();
         const updateTask = await task.save();
         res.json(updateTask);
     } catch (err) {
