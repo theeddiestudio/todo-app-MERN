@@ -34,7 +34,7 @@ function App() {
 
     try{
       const data = await createTaskAPI(newTask);
-      setTasks([...tasks, data]);
+      setTasks([data, ...tasks]);
       setNewTask({title:"", description:""});
       setShowForm(false);
     } catch(e) {
@@ -78,6 +78,11 @@ function App() {
     if (filter === 'completed') return t.isCompleted;
     if (filter === 'pending') return !t.isCompleted;
     return true;
+  }).sort((a,b) => {
+    if (a.isCompleted !== b.isCompleted) {
+      return a.isCompleted ? 1 : -1;
+    }
+    return new Date(b.createdAt) - new Date(a.createdAt);
   });
 
   const stats = {

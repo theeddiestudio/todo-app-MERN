@@ -1,0 +1,20 @@
+{
+  "name": "gotodo",
+  "version": "1.0.0",
+  "description": "created with a tutorial",
+  "homepage": "https://github.com/theeddiestudio/todo-app-MERN#readme",
+  "bugs": {
+    "url": "https://github.com/theeddiestudio/todo-app-MERN/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theeddiestudio/todo-app-MERN.git"
+  },
+  "author": "theeddiestudio",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+  	"build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+	"start": "npm run start --prefix backend"
+  }
+}
